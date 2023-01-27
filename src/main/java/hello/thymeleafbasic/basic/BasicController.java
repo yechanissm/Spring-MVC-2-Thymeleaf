@@ -80,13 +80,32 @@ public class BasicController {
         return "basic/each";
     }
 
+    @GetMapping("/comments")
+    public String comments(Model model){
+        model.addAttribute("data", "Spring!");
+        return "basic/comments";
+    }
+
+    @GetMapping("/block")
+    public String block(Model model){
+        addUsers(model);
+        return "basic/block";
+    }
+
+    @GetMapping("/javascript")
+    public String jajvascript(Model model){
+        model.addAttribute("user", new User("userA", 10));
+        addUsers(model);
+        return "basic/javascript";
+    }
+
     private void addUsers(Model model){
         List<User> list = new ArrayList<>();
         list.add(new User("userA", 10));
         list.add(new User("userB", 20));
         list.add(new User("userC", 30));
 
-        model.addAttribute("users", list)
+        model.addAttribute("users", list);
     }
 
     @Component("helloBean")
